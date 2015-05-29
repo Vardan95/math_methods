@@ -1,0 +1,16 @@
+TriDiagonal[a0_, d0_, c0_, b0_] :=
+	Module[{a = a0,b = b0,c = c0,k,m,n = Length[b0],x},
+	For[k = 2, k <= n, k++,
+		d[[k]] = d[[k]] - (a[[k-1]]/d[[k-1]]) c[[k-1]];
+		b[[k]] = b[[k]] - (a[[k-1]]/d[[k-1]]) b[[k-1]];];
+		
+	x = Table[0,{n}];
+	x[[n]] = (b[[n]]/d[[n]]);
+	
+	For[k = n-1, 1<=k, k--,
+		x[[k]] = (b[[k]] - c[[k]] x[[k+1]])/d[[k]];];
+	
+	Return[x];
+	];
+		
+	
